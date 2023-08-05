@@ -1,0 +1,264 @@
+Bài_1
+
+#include <iostream>
+
+// ham xac dinh nho hon trong 2 so 
+int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+
+int main() {
+    int num1, num2, num3;
+
+    // nhap 3 so 
+    std::cout << "so thu nhat : ";
+    std::cin >> num1;
+    std::cout << "so thu 2 : ";
+    std::cin >> num2;
+    std::cout << "so thu ba : ";
+    std::cin >> num3;
+
+    // hàm 
+    int nhonhat = min(min(num1, num2), num3);
+
+    // int ra 
+    std::cout << "so nho nhat: " << nhonhat << std::endl;
+
+    return 0;
+}
+
+bài 2 
+
+#include <iostream>
+
+// Ham uoc chung lon nhat
+int uoc_chung(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Ham boi chung
+int boi_chung(int a, int b) {
+    return (a * b) / uoc_chung(a, b);
+}
+
+int main() {
+    int num1, num2;
+
+    // nhap 2 so 
+    std::cout << "so thu 1: ";
+    std::cin >> num1;
+    std::cout << "so thu 2: ";
+    std::cin >> num2;
+
+    // tinh 
+    int uocchunglonnhat = uoc_chung(num1, num2);
+    int boichungnhonhat = boi_chung(num1, num2);
+
+    std::cout << "uoc chung lon nhat " << num1 << " và " << num2 << " là: " << uocchunglonnhat << std::endl;
+    std::cout << "boi chung nho nhat " << num1 << " và " << num2 << " là: " << boichungnhonhat << std::endl;
+
+    return 0;
+}
+
+bài 3 
+#include <iostream>
+
+// tinh giai thua 
+unsigned long long factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+int main() {
+    int n;
+
+    // nhap n
+    std::cout << "nhap n (n > 1): ";
+    std::cin >> n;
+
+    // kiem tra
+    if (n <= 1) {
+        std::cout << "vui long nhap so nguyen duon > 1 ." << std::endl;
+        return 1;
+    }
+
+    // Tính n!
+    unsigned long long result = factorial(n);
+    std::cout << n << "! = " << result << std::endl;
+
+    return 0;
+}
+
+bài 4 
+
+#include <iostream>
+
+// hàm tính n!
+unsigned long long factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+// hàm tinh tong hop C(n, k)
+unsigned long long combination(int n, int k) {
+    if (k < 0 || k > n) {
+        return 0;
+    } else {
+        return factorial(n) / (factorial(k) * factorial(n - k));
+    }
+}
+
+int main() {
+    int n, k;
+
+    // nhap k và n 
+    std::cout << "nhap n: ";
+    std::cin >> n;
+    std::cout << "nhap k: ";
+    std::cin >> k;
+
+    // tinh C(n, k)
+    unsigned long long result = combination(n, k);
+    std::cout << "to hop C(" << n << ", " << k << ") = " << result << std::endl;
+
+    return 0;
+}
+ 
+bài 5
+ 
+#include <iostream>
+
+// Hàm tính x mu r
+double power(double x, int r) {
+    double result = 1.0;
+
+    if (r >= 0) {
+        for (int i = 0; i < r; ++i) {
+            result *= x;
+        }
+    } else {
+        for (int i = 0; i > r; --i) {
+            result /= x;
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    double x;
+    int r;
+
+    // nhap 
+    std::cout << "nhap x: ";
+    std::cin >> x;
+    std::cout << "nhap r: ";
+    std::cin >> r;
+
+    // Tính 
+    double result = power(x, r);
+    std::cout << x << " mu " << r << " = " << result << std::endl;
+
+    return 0;
+}
+bài 6
+
+#include <iostream>
+
+// ham tinh dien tich
+double S(double dai, double rong) {
+    return dai * rong;
+}
+
+// ham chu vi
+double T(double dai, double rong) {
+    return 2 * (dai + rong);
+}
+
+// ham ve
+void Ve_hinh_chu_nhat(int dai, int rong) {
+    for (int i = 0; i < dai; ++i) {
+        for (int j = 0; j < rong; ++j) {
+            std::cout << "* ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    double dai, rong;
+
+    // Nh?p d? dài và d? r?ng t? ngu?i dùng
+    std::cout << "chieu dai: ";
+    std::cin >> dai;
+    std::cout << "chieu dong: ";
+    std::cin >> rong ;
+
+    // Tính di?n tích và chu vi
+    double dientich = S(dai, rong);
+    double chuvi = T(dai, rong);
+
+    // 
+    std::cout << "dien tich la : " << dientich << std::endl;
+    std::cout << "Chu vi là: " << chuvi << std::endl;
+
+    // 
+    std::cout << "hcn:" << std::endl;
+    Ve_hinh_chu_nhat(dai, rong);
+
+    return 0;
+}
+
+bài 7
+
+#include <iostream>
+
+// so hoan thien	
+bool sohoanthien(int number) {
+    if (number <= 1) {
+        return false;
+    }
+
+    int uocso = 1; // uoc so 1 luon la uoc cua so tu nhien
+    for (int i = 2; i * i <= number; ++i) {
+        if (number % i == 0) {
+            uocso += i;
+            if (i != number / i) {
+                uocso += (number / i);
+            }
+        }
+    }
+
+    return uocso == number;
+}
+
+int main() {
+    int N;
+
+    // nhap N
+    std::cout << "Nhap 1 so N: ";
+    std::cin >> N;
+
+    // kiem tra va in ra
+    std::cout << "cac so hoan thien nho hon" << N << " là: ";
+    for (int i = 1; i < N; ++i) {
+        if (sohoanthien	(i)) {
+            std::cout << i << " ";
+        }
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
